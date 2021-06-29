@@ -1,31 +1,3 @@
-// Old version taken from SkillBakery.  Retained a second attempt is made with that approach.
-/*import authentication from '@kdpw/msal-b2c-react';
-import decodeJWT from 'jwt-decode';
-
-class AuthWrapper {
-    isLoggedIn() {
-        const token = this.getToken();
-
-        return( token ? true : false );
-    }
-
-    logout() {
-        authentication.signOut();
-    }
-
-    getToken() {
-        return authentication.getAccessToken();
-    }
-
-    currentUser() {
-        const decoded = decodeJWT(this.getToken());
-
-        return( {
-            email: decoded.emails[ 0 ],
-        } );
-    }
-}*/
-
 // Sourced from: https://dev.to/finiam/predictable-react-authentication-with-the-context-api-g10
 
 import axios from 'axios';
@@ -111,8 +83,12 @@ export function AuthorizationProvider( {children} ) {
     };
 
     function currentUser() {
+        const token = getToken();
+
+        const decoded = jwt.decode(token);
+
         return({
-            email: "email@example.com"
+            email: decoded.email
         });
     };
 

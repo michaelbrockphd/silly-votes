@@ -7,7 +7,6 @@ import AppHeader from '../AppHeader';
 import AppFooter from '../AppFooter';
 import Campaigns from '../Campaigns';
 import Login from '../Login';
-import Members from '../Members';
 import PrivateRoute from '../PrivateRoute';
 import Profile from '../Profile';
 
@@ -25,7 +24,6 @@ function App() {
                             </Route>
                             <Route exact path="/campaigns" component={Campaigns} />
                             <Route exact path="/login" component={Login} />
-                            <PrivateRoute exact path="/members" loginAt="/login" component={Members} />
                             <PrivateRoute exact path="/profile" loginAt="/login" component={Profile} />
                         </Switch>
                     </Router>
