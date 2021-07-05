@@ -1,6 +1,10 @@
 import axios from 'axios';
 
-const baseUrl = process.env.FE_WEB_API_URL || 'http://localhost:9000';
+var baseUrl = null;
+
+const setApiUrl = (url) => {
+    baseUrl = url;
+};
 
 class WebApi {
     getCampaigns() {
@@ -73,3 +77,7 @@ class WebApi {
 }
 
 export default new WebApi();
+
+export {
+    setApiUrl
+};

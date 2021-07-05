@@ -1,4 +1,5 @@
 import express from 'express';
+import StatusCodes from 'http-status-codes';
 
 import {
     CreateCampaignHandle as hdlCreate,
@@ -38,7 +39,7 @@ app.get(
     mdlPrefetchUsrCmpg,
     (req, res) => {
         // Nothing much to do, other than just return the data.
-        res.status(200)
+        res.status(StatusCodes.OK)
            .send(req.existingData);
     }
 );

@@ -1,14 +1,9 @@
 import cors from 'cors';
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import StatusCodes from 'http-status-codes';
 
 import ProxyFactory from './proxies.mjs';
-
-// Constants
-
-const HTTP_STATUS_OK = 200;
-const HTTP_STATUS_TEA_POT = 418;
-const HTTP_STATUS_UNAUTHORIZED = 401;
 
 // Initialize from any environment variables first.
 
@@ -40,7 +35,7 @@ const verifyJwt = (req, res, next) => {
         next();
     }
     else {
-        res.status(401).end();
+        res.status(StatusCodes.UNAUTHORIZED).end();
     }
 };
 
@@ -54,7 +49,12 @@ app.use( verifyJwt, ProxyFactory.createUserCampaignProxy( proxyUrlCampaigns ) );
 // Register any local handles.
 
 app.get( '/', (req, res) => {
-    res.status( HTTP_STATUS_TEA_POT )
+    // Joke response mainly to see if the micro-service is alive or not.
+    //
+    // It is also less likely to be consumed and interpreted by accident as the
+    // status code is a joke code.
+    
+    res.status( StatusCodes.IM_A_TEAPOT )
        .send( "Ask me nicely and I may brew coffee" );
 } );
 

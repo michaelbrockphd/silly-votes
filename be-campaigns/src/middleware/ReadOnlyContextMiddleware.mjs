@@ -1,3 +1,5 @@
+import StatusCodes from 'http-status-codes';
+
 import createContext from '../data/CampaignContext.mjs';
 
 export default function createContextMiddleware( connectionString ) {
@@ -12,7 +14,7 @@ export default function createContextMiddleware( connectionString ) {
         }
         catch
         {
-            res.status(500)
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR)
                .send("Could not get required context.");
         }
     };

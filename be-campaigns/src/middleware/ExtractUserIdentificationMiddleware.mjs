@@ -1,3 +1,4 @@
+import StatusCodes from 'http-status-codes';
 import jwt from 'jsonwebtoken';
 
 export default function extractUserIdentification(req, res, next) {
@@ -23,6 +24,6 @@ export default function extractUserIdentification(req, res, next) {
         next();
     }
     else {
-        res.status(401).end();
+        res.status(StatusCodes.UNAUTHORIZED).end();
     }
 }

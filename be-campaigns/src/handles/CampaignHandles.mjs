@@ -1,4 +1,3 @@
-import { request } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 const CreateCampaignHandle = (req, res) => {

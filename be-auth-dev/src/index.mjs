@@ -1,11 +1,9 @@
 import express from 'express';
+import StatusCodes from 'http-status-codes';
 import jwt from 'jsonwebtoken';
 
 const app = express();
 const port = process.env.BE_AUTH_DEV_PORT || 9001;
-
-const HTTP_STATUS_OK = 200;
-const HTTP_STATUS_FORBIDDEN = 403;
 
 const secret = process.env.JWT_SECRET;
 
@@ -36,10 +34,10 @@ app.post( '/login', (req, res ) => {
             "Authorization": token
         });
 
-        res.status( HTTP_STATUS_OK );
+        res.status( StatusCodes.OK );
     }
     else {
-        res.status( HTTP_STATUS_FORBIDDEN );
+        res.status( StatusCodes.FORBIDDEN );
     }
 
     res.end();

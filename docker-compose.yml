@@ -75,11 +75,10 @@ services:
             - net-pub
 
     fe-web:
-        environment:
-            - FE_WEB_API_URL=http://fe-web-api:9000
-
         build:
             context: ./fe-web-react
+            args:
+                - ARG_FE_WEB_API_URL=http://localhost:9000
 
         image: sv_fe_web
 

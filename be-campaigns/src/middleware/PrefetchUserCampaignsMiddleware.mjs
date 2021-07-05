@@ -1,3 +1,5 @@
+import StatusCodes from 'http-status-codes';
+
 export default function preFetchUserCampaigns(req, res, next) {
     if( req.dbContext ) {
         const userId = req.userIdentity.email;
@@ -14,17 +16,17 @@ export default function preFetchUserCampaigns(req, res, next) {
                .catch((err) => {
                    console.log(err);
 
-                   res.status(500)
+                   res.status(StatusCodes.INTERNAL_SERVER_ERROR)
                       .send(err);
                });
         }
         else {
-            res.status(400)
+            res.status(StatusCodes.BAD_REQUEST)
                .send("Invalid parameters");
         }
     }
     else {
-        res.status(500)
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR)
            .send("No context provided");
     }
 }
